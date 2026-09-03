@@ -182,3 +182,34 @@
     border-right-color: var(--border);
   }
 }
+.header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #7d10b9;
+  text-align: center;
+  position: relative;
+  padding-bottom: 24px;
+  margin-bottom: 48px;
+}
+
+.header h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 8px;
+  background: linear-gradient(90deg, #5c097d, #ae65d0);
+  border-radius: 10px;
+}
+
+.fixed-bottom-left {
+  position: fixed;    /* קובע שהתמונה תישאר במקום קבוע גם בעת גלילה */
+  bottom: 0px;       /* מרחק מהחלק התחתון (ניתן לשנות ל-0 אם רוצים צמוד ממש) */
+  left: 20px;         /* מרחק מזווית שמאל */
+  width: 350px;       /* הגדרת רוחב לתמונה (ניתן להתאים לפי הצורך) */
+  height: auto;       /* שמירה על יחס הגובה-רוחב המקורי */
+  z-index: 1000;      /* מבטיח שהתמונה תופיע מעל אלמנטים אחרים בעמוד */
+  pointer-events: none; /* רשות: מונע מהתמונה לחסום לחיצות על אלמנטים שמתחתיה */
+}
