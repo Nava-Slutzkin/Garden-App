@@ -1,13 +1,12 @@
 import './App.css';
 
-export function Flower({ 
-  name = "ורד סגול", 
-  colorPetal = "#9c27b0", // צבע עלי הכותרת
-  colorCenter = "#ffeb3b", // צבע מרכז הפרח
-  colorStem = "#2e7d32"    // צבע הגבעול והעלים
-}) {
+export function Flower({ name, colorPetal, colorCenter, colorStem }) {
 
-  // עיצוב הכרטיסייה בגווני סגול תואמים ל-CSS
+  const finalName = name || "פרח קסום";
+  const finalColorPetal = colorPetal || "#9c27b0";
+  const finalColorCenter = colorCenter || "#ffeb3b";
+  const finalColorStem = colorStem || "#2e7d32";
+
   const cardStyle = {
     width: "220px",
     padding: "24px 20px",
@@ -26,7 +25,7 @@ export function Flower({
 
   const titleStyle = {
     margin: 0,
-    color: "#5c097d", 
+    color: "#5c097d",
     fontSize: "1.3rem",
     fontWeight: "600",
   };
@@ -36,8 +35,8 @@ export function Flower({
   };
 
   return (
-    <div 
-      style={cardStyle} 
+    <div
+      style={cardStyle}
       onClick={handleClick}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = "translateY(-6px)";
@@ -50,23 +49,22 @@ export function Flower({
     >
       <h3 style={titleStyle}>{name}</h3>
 
-      {/* איור SVG מפורט של פרח עם עלי כותרת, מרכז, גבעול ועלים */}
       <svg width="120" height="150" viewBox="0 0 100 130" style={{ filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.1))" }}>
         {/* גבעול מפותל מעט */}
-        <path 
-          d="M 50 65 Q 45 95 50 125" 
-          stroke={colorStem} 
-          strokeWidth="4" 
-          fill="none" 
-          strokeLinecap="round" 
+        <path
+          d="M 50 65 Q 45 95 50 125"
+          stroke={finalColorStem}
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
         />
 
         {/* עלים על הגבעול */}
-        <path d="M 48 90 C 30 85 25 100 47 95" fill={colorStem} />
-        <path d="M 51 100 C 70 95 75 110 52 105" fill={colorStem} />
+        <path d="M 48 90 C 30 85 25 100 47 95" fill={finalColorStem} />
+        <path d="M 51 100 C 70 95 75 110 52 105" fill={finalColorStem} />
 
         {/* 8 עלי כותרת מסודרים במעגל */}
-        <g fill={colorPetal}>
+        <g fill={finalColorPetal}>
           <ellipse cx="50" cy="30" rx="9" ry="18" />
           <ellipse cx="50" cy="30" rx="9" ry="18" transform="rotate(45 50 45)" />
           <ellipse cx="50" cy="30" rx="9" ry="18" transform="rotate(90 50 45)" />
@@ -78,7 +76,7 @@ export function Flower({
         </g>
 
         {/* מרכז הפרח */}
-        <circle cx="50" cy="45" r="11" fill={colorCenter} stroke="#ffffff" strokeWidth="2" />
+        <circle cx="50" cy="45" r="11" fill={finalColorCenter} stroke="#ffffff" strokeWidth="2" />
       </svg>
     </div>
   );
@@ -87,21 +85,24 @@ export function Flower({
 function App() {
   return (
     <div className="header">
-        <h1>הגינה שלי</h1>
-        <img src="/public/image.png" alt="תמונה" className="fixed-bottom-left" />
+      <h1>הגינה שלי</h1>
+      <img src="/public/image.png" alt="תמונה" className="fixed-bottom-left" />
 
-        {/* תצוגת מופעים של הפרחים */}
-        <div style={{ 
-          display: 'flex', 
-          gap: '24px', 
-          padding: '20px', 
-          flexWrap: 'wrap', 
-          justifyContent: 'center' 
-        }}>
-          <Flower name="סחלב סגול" colorPetal="#8e24aa" colorCenter="#ffd54f" />
-          <Flower name="חמניה" colorPetal="#ffb300" colorCenter="#5d4037" />
-          <Flower name="לבלוב ורוד" colorPetal="#ec407a" colorCenter="#fff176" />
-        </div>
+      <div style={{
+        display: 'flex',
+        gap: '24px',
+        padding: '20px',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+      }}>
+        <Flower name="סחלב סגול" colorPetal="#8e24aa" colorCenter="#ffd54f" />
+        <Flower name="חמניה" colorPetal="#ffb300" colorCenter="#5d4037" />
+        <Flower name="לבלוב ורוד" colorPetal="#ec407a" colorCenter="#fff176" />
+        <Flower name="כלנית אדומה" colorPetal="#ff3333" colorCenter="#1a1a1a" colorStem="#339933" />
+        <Flower name="צבעוני" colorPetal="#ff5252" />
+        <Flower name="נרקיס" colorCenter="#ff9800" />
+        <Flower name="שושן צחור" />
+      </div>
     </div>
   );
 }
