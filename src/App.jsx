@@ -1,8 +1,59 @@
 import './App.css';
 
-export function Flower({ name, colorPetal, colorCenter, colorStem }) {
+const flowers = [
+  {
+    code: "S-001",
+    name: "סחלב סגול",
+    colorPetal: "#8e24aa",
+    colorCenter: "#ffd54f",
+    colorStem: "#2e7d32",
+  },
+  {
+    code: "S-002",
+    name: "חמניה",
+    colorPetal: "#ffb300",
+    colorCenter: "#5d4037",
+    colorStem: "#2e7d32",
+  },
+  {
+    code: "S-003",
+    name: "לבלוב ורוד",
+    colorPetal: "#ec407a",
+    colorCenter: "#fff176",
+    colorStem: "#2e7d32",
+  },
+  {
+    code: "S-004",
+    name: "כלנית אדומה",
+    colorPetal: "#ff3333",
+    colorCenter: "#1a1a1a",
+    colorStem: "#339933",
+  },
+  {
+    code: "S-005",
+    name: "צבעוני",
+    colorPetal: "#ff5252",
+    colorCenter: "#ffd54f",
+    colorStem: "#2e7d32",
+  },
+  {
+    code: "S-006",
+    name: "נרקיס",
+    colorPetal: "#ff9800",
+    colorCenter: "#ff9800",
+    colorStem: "#2e7d32",
+  },
+  {
+    code: "S-007",
+    name: "שושן צחור",
+    colorPetal: "#4a148c",
+    colorCenter: "#ffd54f",
+    colorStem: "#2e7d32",
+  },
+];
 
-  const finalName = name || "פרח קסום";
+export function Flower({ code, name, colorPetal, colorCenter, colorStem }) {
+
   const finalColorPetal = colorPetal || "#9c27b0";
   const finalColorCenter = colorCenter || "#ffeb3b";
   const finalColorStem = colorStem || "#2e7d32";
@@ -30,8 +81,15 @@ export function Flower({ name, colorPetal, colorCenter, colorStem }) {
     fontWeight: "600",
   };
 
+  const codeStyle = {
+    margin: "4px 0 0",
+    color: "#6b6375",
+    fontSize: "0.8rem",
+    letterSpacing: "0.08em",
+  };
+
   const handleClick = () => {
-    alert(`אני פרח מסוג ${name}`);
+    alert(`אני פרח מסוג ${name}, קוד ${code}`);
   };
 
   return (
@@ -48,6 +106,7 @@ export function Flower({ name, colorPetal, colorCenter, colorStem }) {
       }}
     >
       <h3 style={titleStyle}>{name}</h3>
+      <p style={codeStyle}>{code}</p>
 
       <svg width="120" height="150" viewBox="0 0 100 130" style={{ filter: "drop-shadow(0px 4px 6px rgba(0,0,0,0.1))" }}>
         {/* גבעול מפותל מעט */}
@@ -84,26 +143,19 @@ export function Flower({ name, colorPetal, colorCenter, colorStem }) {
 
 function App() {
   return (
-    <div className="header">
+    <main className="header">
       <h1>הגינה שלי</h1>
       <img src="/public/image.png" alt="תמונה" className="fixed-bottom-left" />
 
-      <div style={{
-        display: 'flex',
-        gap: '24px',
-        padding: '20px',
-        flexWrap: 'wrap',
-        justifyContent: 'center'
-      }}>
-        <Flower name="סחלב סגול" colorPetal="#8e24aa" colorCenter="#ffd54f" />
-        <Flower name="חמניה" colorPetal="#ffb300" colorCenter="#5d4037" />
-        <Flower name="לבלוב ורוד" colorPetal="#ec407a" colorCenter="#fff176" />
-        <Flower name="כלנית אדומה" colorPetal="#ff3333" colorCenter="#1a1a1a" colorStem="#339933" />
-        <Flower name="צבעוני" colorPetal="#ff5252" />
-        <Flower name="נרקיס" colorCenter="#ff9800" />
-        <Flower name="שושן צחור" />
-      </div>
-    </div>
+      <section
+        className="flower-gallery"
+        aria-label="רשימת הפרחים בגינה"
+      >
+        {flowers.map((flower) => (
+          <Flower key={flower.code} {...flower} />
+        ))}
+      </section>
+    </main>
   );
 }
 

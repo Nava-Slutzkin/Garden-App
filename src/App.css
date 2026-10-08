@@ -206,10 +206,26 @@
 
 .fixed-bottom-left {
   position: fixed;    /* קובע שהתמונה תישאר במקום קבוע גם בעת גלילה */
-  bottom: 0px;       /* מרחק מהחלק התחתון (ניתן לשנות ל-0 אם רוצים צמוד ממש) */
+  bottom: 0px;       /* מרחק מהחלק התחתון (ניתן לשנות ל-0 אם רוצה צמוד ממש) */
   left: 20px;         /* מרחק מזווית שמאל */
   width: 350px;       /* הגדרת רוחב לתמונה (ניתן להתאים לפי הצורך) */
   height: auto;       /* שמירה על יחס הגובה-רוחב המקורי */
   z-index: 1000;      /* מבטיח שהתמונה תופיע מעל אלמנטים אחרים בעמוד */
   pointer-events: none; /* רשות: מונע מהתמונה לחסום לחיצות על אלמנטים שמתחתיה */
+}
+
+.flower-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .flower-gallery {
+    gap: 16px;
+    padding: 16px;
+  }
 }
